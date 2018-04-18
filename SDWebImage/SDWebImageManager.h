@@ -144,6 +144,19 @@ typedef NSData * _Nullable(^SDWebImageCacheSerializerBlock)(UIImage * _Nonnull i
 - (BOOL)imageManager:(nonnull SDWebImageManager *)imageManager shouldDownloadImageForURL:(nullable NSURL *)imageURL;
 
 /**
+ * Fetch security image URL.
+ * NOTE: In order to protect image resources, instead of using a pernement image url,
+ * using a temporary security url only valid for short seconds.
+ * imageManager:fetchSecurityURL: is used to handle this situation.
+ *
+ * @param imageManager The current `SDWebImageManager`
+ * @param imageURL     The url of the image to transform
+ *
+ * @return The security image URL.
+ */
+- (nullable NSURL *)imageManager:(nonnull SDWebImageManager *)imageManager fetchSecurityURL:(nullable NSURL *)imageURL;
+
+/**
  * Controls the complicated logic to mark as failed URLs when download error occur.
  * If the delegate implement this method, we will not use the built-in way to mark URL as failed based on error code;
  @param imageManager The current `SDWebImageManager`
